@@ -1,0 +1,53 @@
+[
+    {
+    "p_csv_relative_url": "OlaIpaye/adventure_works/refs/heads/main/datasets/AdventureWorks_Calendar.csv",
+    "p_sink_folder": "AW_Calendar",
+    "p_file_name": "Calendar.csv"
+    },
+    {
+    "p_csv_relative_url": "OlaIpaye/adventure_works/refs/heads/main/datasets/AdventureWorks_Customers.csv",
+    "p_sink_folder": "AW_Customers",
+    "p_file_name": "Customers.csv"
+    },
+    {
+    "p_csv_relative_url": "OlaIpaye/adventure_works/refs/heads/main/datasets/AdventureWorks_Product_Categories.csv",
+    "p_sink_folder": "AW_Categories",
+    "p_file_name": "Categories.csv"
+    },
+    {
+    "p_csv_relative_url": "OlaIpaye/adventure_works/refs/heads/main/datasets/AdventureWorks_Product_Subcategories.csv",
+    "p_sink_folder": "AW_Subcategories",
+    "p_file_name": "Subcategories.csv"
+    },
+    {
+    "p_csv_relative_url": "OlaIpaye/adventure_works/refs/heads/main/datasets/AdventureWorks_Products.csv",
+    "p_sink_folder": "AW_Products",
+    "p_file_name": "Products.csv"
+    },
+    {
+    "p_csv_relative_url": "OlaIpaye/adventure_works/refs/heads/main/datasets/AdventureWorks_Returns.csv",
+    "p_sink_folder": "AW_Returns",
+    "p_file_name": "Returns.csv"
+    },
+    {
+    "p_csv_relative_url": "OlaIpaye/adventure_works/refs/heads/main/datasets/AdventureWorks_Sales_2015.csv",
+    "p_sink_folder": "AW_Sales",
+    "p_file_name": "Sales_2015.csv"
+    },
+    {
+    "p_csv_relative_url": "OlaIpaye/adventure_works/refs/heads/main/datasets/AdventureWorks_Sales_2016.csv",
+    "p_sink_folder": "AW_Sales",
+    "p_file_name": "Sales_2016.csv"
+    },
+    {
+    "p_csv_relative_url": "OlaIpaye/adventure_works/refs/heads/main/datasets/AdventureWorks_Sales_2017.csv",
+    "p_sink_folder": "AW_Sales",
+    "p_file_name": "Sales_2017.csv"
+    },
+    {
+    "p_csv_relative_url": "OlaIpaye/adventure_works/refs/heads/main/datasets/AdventureWorks_Territories.csv",
+    "p_sink_folder": "AW_Territories",
+    "p_file_name": "Territories.csv"
+    },
+
+]
