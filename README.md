@@ -55,6 +55,35 @@ The dataset comes from Kaggle’s [Adventure Works dataset](https://www.kaggle.c
 
 - Successfully ingested all Adventure Works datasets into the **bronze** container, each with its own dedicated folder (e.g., `AW_Products`, `AW_Customers`, `AW_Sales`, etc.).
 
+## Adventure Works Data Transformation & Analysis (Azure Databricks + ADLS Silver Layer)
+
+### 5. Azure Databricks Setup for Silver Layer
+- Created an **Azure Databricks resource** and set up a compute cluster.
+- Created an **App Registration** in Microsoft Entra ID, generated a **Client Secret**, and stored 4 key values (`app_id`, `object_id`, `secret`, `secret_id`) securely in a local file.
+- In Azure Storage Account:
+  - Created **Access Control (IAM)** role assignment.
+  - Added **Storage Blob Contributor** role to the registered application.
+- Back in Databricks:
+  - Created a new **workspace** and **notebook**.
+  - Connected Databricks to ADLS using OAuth credentials (based on [Microsoft Docs guide](https://learn.microsoft.com/en-us/azure/databricks/connect/storage/azure-storage)).
+  - Configured `spark.conf` with OAuth settings to allow secure access.
+
+### 6. Silver Layer Transformations
+- Built a **Databricks Notebook (Silver Layer)** using PySpark.
+- **Read Bronze Data** (e.g., Calendar, Customers, Products, etc.) into DataFrames.
+- **Transformations performed:**
+  - Example: Customer Data - Created new **Full Name** column by concatenating Prefix, FirstName and LastName.
+  - Some datasets (e.g., Returns, Categories) required no transformations and were directly moved to Silver.
+- **Saved transformed data** in **Parquet format** into the **Silver container** in ADLS.
+
+### 7. Silver Layer Analysis (Databricks Visualizations)
+- Read and transformed the **Sales Data**, then pushed it into the **Silver container** in ADLS.
+- Created visualizations inside Databricks to explore business insights:
+  - **Orders per Day** - Aggregated sales data to count total orders customers made each day.
+  - **Category Performance** - Analyzed which product category performed best.
+
+These visualizations help validate the transformed data in the Silver layer and provide initial analytical insights before moving to the Gold layer or BI tools.
+
 ---
 
 ## Images (Project Timeline)
@@ -82,4 +111,40 @@ The dataset comes from Kaggle’s [Adventure Works dataset](https://www.kaggle.c
 6. **Example: `Products.csv` stored inside `AW_Products/`**
 
 ![ADLS AW_Products folder with Products.csv](<Images/6 - products.csv file inside the aw_products folder in the bronze container on ADLS.png>)
+
+7. **Databricks App Access Setup**
+
+![Databricks notebook configuring spark.conf with OAuth credentials for ADLS access](<Images/7 - Snippet of databricks notebook for reading ne of my project data.png>)
+
+8. **Reading Calendar Data**
+
+![Databricks notebook reading Calendar CSV data from Bronze container using PySpark](<Images/8 - Snippet of databricks notebook for reading ne of my project data.png>)
+
+9. **Reading Customer Data**
+
+![Databricks notebook reading Customer CSV data from Bronze container into DataFrame](<Images/9 - Snippet of databricks notebook for reading ne of my project data.png>)
+
+10. **Transform Customer Data**
+
+![Databricks PySpark code transforming customer dataset by creating Full Name column](<Images/10 - Transform customer data in Azure Databricks.png>)
+
+11. **Transformed Customer Data**
+
+![Databricks table preview showing transformed customer data with new Full Name column](<Images/11 - Transformed customer data in Azure Databricks - Full Name column transformed.png>)
+
+12. **Save to Silver Layer**
+
+![PySpark code saving transformed customer data into Silver container in ADLS](<Images/12 - Transformed customer data in Azure Databricks - Saved to Silver layer in ADLS.png>)
+
+13. **Silver Container in ADLS**
+
+![ADLS Silver container showing multiple folders with transformed datasets](<Images/13 - All folders containing data transformation from bronze to silver zone in ADLS.png>)
+
+14. **Sales Orders Per Day**
+
+![Databricks line chart showing daily total orders from sales data](<Images/14 - Sales analysis - count of total orders in each day.png>)
+
+15. **Category Performance**
+
+![Databricks donut chart showing product category performance distribution](<Images/15 - Sales analysis - which category is performing best.png>)
 
