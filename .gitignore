@@ -1,0 +1,52 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# --- Jupyter / Databricks Notebooks ---
+.ipynb_checkpoints
+*.dbc
+*.dbc_archive
+
+# --- Environment & Secrets ---
+.env
+.env.*
+*.secret
+*.key
+secret_codes.py        # local secrets (ignored)
+secrets.json    # any local JSON secrets (ignored)
+
+# --- Logs & Temp files ---
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# --- IDE / Editor settings ---
+.vscode/
+.idea/
+*.iml
+
+# --- Data files (large/raw) ---
+*.csv
+*.parquet
+*.json
+*.xlsx
+*.xls
+*.zip
+
+# --- Azure / Synapse specific ---
+*.bim          # tabular models
+*.dwproj       # Synapse project files
+*.asdatabase   # Analysis Services
+*.bacpac       # Database exports
+*.dacpac       # Data-tier apps
+*.pbix         # Power BI reports (if any)
