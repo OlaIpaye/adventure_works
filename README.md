@@ -19,7 +19,7 @@ The dataset comes from Kaggle’s [Adventure Works dataset](https://www.kaggle.c
 
 ### **Steps Completed So Far**:
 
-### Adventure Works Data Ingestion Pipeline (Azure Data Factory + ADLS)
+### Adventure Works Data Ingestion Pipeline (Azure Data Factory & ADLS Bronze Layer)
 
 ### 1. Dataset Preparation
 - Created a GitHub repository and cloned it locally.  
@@ -55,7 +55,7 @@ The dataset comes from Kaggle’s [Adventure Works dataset](https://www.kaggle.c
 
 - Successfully ingested all Adventure Works datasets into the **bronze** container, each with its own dedicated folder (e.g., `AW_Products`, `AW_Customers`, `AW_Sales`, etc.).
 
-## Adventure Works Data Transformation & Analysis (Azure Databricks + ADLS Silver Layer)
+## Adventure Works Data Transformation & Analysis (Azure Databricks & ADLS Silver Layer)
 
 ### 5. Azure Databricks Setup for Silver Layer
 - Created an **Azure Databricks resource** and set up a compute cluster.
@@ -83,6 +83,59 @@ The dataset comes from Kaggle’s [Adventure Works dataset](https://www.kaggle.c
   - **Category Performance** - Analyzed which product category performed best.
 
 These visualizations help validate the transformed data in the Silver layer and provide initial analytical insights before moving to the Gold layer or BI tools.
+
+## Adventure Works Analytics with Synapse (Serverless SQL & Gold Layer)
+
+### 8. Synapse Analytics Setup
+
+- Created an Azure Synapse Analytics resource and explored its interface (pipelines, transformations, and SQL pool features).
+
+- Configured Managed Identity IAM in ADLS so Synapse could securely access transformed data in the Silver layer.
+
+### 9. Querying Silver Layer with Serverless SQL
+
+- Created a serverless database (aw_database) inside Synapse.
+
+- Granted myself access to ADLS by assigning the Storage Blob Data Contributor role.
+
+- Queried data from ADLS Silver layer using the OPENROWSET function:
+  - SELECT *
+    FROM OPENROWSET(
+    BULK 'https://adworksstorageacc.dfs.core.windows.net/silver/AW_Calendar/',
+    FORMAT = 'PARQUET'
+    ) as Calendar;
+- This allowed me to explore the Silver data directly in Synapse SQL.
+
+### 10. Creating Views (Gold Schema)
+
+- Created a gold schema in the serverless database.
+
+- Defined views for each Silver dataset (calendar, customers, products, sales, etc.).
+
+- Views act as an abstraction layer, hiding storage paths and exposing clean logical tables.
+
+11. Creating External Tables (Gold Layer)
+
+- Configured external resources in Synapse:
+
+- Master Key
+
+- Database Scoped Credential (Managed Identity)
+
+- External Data Sources (Silver and Gold ADLS containers)
+
+- External File Format (Parquet with Snappy compression)
+- Created an external table in the Gold layer to persist transformed Sales data:
+  - CREATE EXTERNAL TABLE gold.ext_sales
+    WITH (
+    LOCATION = 'ext_sales',
+    DATA_SOURCE = source_gold,
+    FILE_FORMAT = format_parquet
+    )
+    AS
+    SELECT *
+    FROM gold.sales;
+- Successfully queried the new Gold external table.
 
 ---
 
@@ -147,4 +200,16 @@ These visualizations help validate the transformed data in the Silver layer and 
 15. **Category Performance**
 
 ![Databricks donut chart showing product category performance distribution](<Images/15 - Sales analysis - which category is performing best.png>)
+
+16. **Querying Silver Data with OPENROWSET**
+
+![Querying Silver Data with OPENROWSET](<Images/16 - Azure synapse analytics - Running SQL Script to query the Calendar data in ADLS.png>)
+
+17. **Creating External Table from Sales View in Synapse**
+
+![Creating External Table from Sales View in Synapse](<Images/17 - Azure synapse analytics - Created external table for sales data from the view, stored in gold later.png>)
+
+18. **Sales Data Stored in Gold Container (Parquet format)**
+
+![Sales Data Stored in Gold Container (Parquet format)](<Images/18 - Azure synapse analytics & ADLS gold layer - Stored external table of sales data into gold layer as parquet format after transformation.png>)
 
