@@ -229,7 +229,7 @@ These visualizations help validate the transformed data in the Silver layer and 
 
 ![Established Connection Between Synapse and Power BI](<Images/19 - Established connection between Azure Synapse and Power BI.png>)
 
-20. **Visualizing External Sales Table in Power BI""
+20. **Visualizing External Sales Table in Power BI**
 
 ![Visualizing External Sales Table in Power BI](<Images/20 - Visualized the external sales table in Power BI.png>)
 
