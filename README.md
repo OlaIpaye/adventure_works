@@ -114,7 +114,7 @@ These visualizations help validate the transformed data in the Silver layer and 
 
 - Views act as an abstraction layer, hiding storage paths and exposing clean logical tables.
 
-11. Creating External Tables (Gold Layer)
+### 11. Creating External Tables (Gold Layer)
 
 - Configured external resources in Synapse:
 
@@ -136,6 +136,18 @@ These visualizations help validate the transformed data in the Silver layer and 
     SELECT *
     FROM gold.sales;
 - Successfully queried the new Gold external table.
+
+## Adventure Works Visualization with Power BI
+
+### 12. Connecting Synapse to Power BI
+
+- Copied the Serverless SQL Endpoint from Synapse to connect with Azure data source in Power BI
+
+- Connected Power BI to Synapse via the Azure Synapse Analytics SQL option.
+
+- Loaded the gold.ext_sales external table into Power BI.
+
+- Built quick visuals to validate the connection and explore the sales data.
 
 ---
 
@@ -213,3 +225,14 @@ These visualizations help validate the transformed data in the Silver layer and 
 
 ![Sales Data Stored in Gold Container (Parquet format)](<Images/18 - Azure synapse analytics & ADLS gold layer - Stored external table of sales data into gold layer as parquet format after transformation.png>)
 
+19. **Established Connection Between Synapse and Power BI**
+
+![Established Connection Between Synapse and Power BI](<Images/19 - Established connection between Azure Synapse and Power BI.png>)
+
+20. **Visualizing External Sales Table in Power BI""
+
+![Visualizing External Sales Table in Power BI](<Images/20 - Visualized the external sales table in Power BI.png>)
+
+## THE END
+
+- **Project Completed**: Data successfully ingested (ADF to ADLS), transformed (Databricks to Silver zone), modeled (Synapse to Gold zone), and visualized (Power BI).
