@@ -39,17 +39,17 @@ The dataset comes from Kaggle’s [Adventure Works dataset](https://www.kaggle.c
   - `StorageDataLake` - Connects to ADLS (storage destination).
 
 ### 3. Data Ingestion to Bronze Layer
-- Built an **ADF Copy Data pipeline** (`CopyRawData`).  
-- Source: GitHub (via `HttpLinkedService`).  
-- Sink: ADLS `bronze` container (via `StorageDataLake`).  
-- Verified pipeline run succeeded ✅.  
-- File `Products.csv` is now stored in: **bronze/products/Products.csv**
+- Built an **ADF Copy Data pipeline** (`CopyRawData`).
+- Source: GitHub (via `HttpLinkedService`).
+- Sink: ADLS `bronze` container (via `StorageDataLake`).
+- Verified pipeline run succeeded.
+- File `Products.csv` is now stored in: **bronze/products/Products.csv**.
 
 ### 4. Dynamic Parameterized Ingestion
 - Created a **JSON configuration file** (`git.json`) containing metadata for all datasets:
-  - `p_csv_relative_url` - GitHub dataset path  
-  - `p_sink_folder` - Destination folder in Bronze layer  
-  - `p_file_name` - Final CSV name  
+  - `p_csv_relative_url` - GitHub dataset path.
+  - `p_sink_folder` - Destination folder in Bronze layer.
+  - `p_file_name` - Final CSV name.
 
 - Uploaded the JSON file into a separate ADLS container called **parameters**.  
 - Built a new pipeline using:
