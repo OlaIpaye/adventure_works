@@ -12,6 +12,10 @@ The dataset comes from Kaggle’s [Adventure Works dataset](https://www.kaggle.c
 ### Tech Stack
 - **Azure Data Factory (ADF)** - Orchestration & data movement
 - **Azure Data Lake Storage Gen2 (ADLS)** - Storage (Bronze, Silver, Gold zones)
+- **Azure Databricks** - Data transformation & processing (PySpark)
+- **Azure Synapse Analytics** - Data modeling, SQL queries, external tables, and abstraction layer
+- **Microsoft Entra ID (App Registrations & Managed Identity)** - Secure authentication and access control
+- **Power BI** - Data visualization and reporting
 - **GitHub** - Source control and dataset hosting
 - **Kaggle Dataset** - Raw dataset source
 
